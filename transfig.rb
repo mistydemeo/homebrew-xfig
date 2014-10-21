@@ -48,6 +48,9 @@ class Transfig < Formula
     inreplace "fig2dev/Imakefile", "FIG2DEV_LIBDIR = /usr/local/lib/fig2dev",
               "FIG2DEV_LIBDIR = #{lib}/fig2dev"
 
+    # Patch fig2dev/dev/genibmgl.c
+    inreplace "fig2dev/dev/genibmgl.c", "static set_width(w)", "static void set_width(w)"
+
     # generate Makefiles
     system "make clean"
     system "xmkmf"
