@@ -4,7 +4,7 @@ class Xfig < Formula
   homepage 'http://www.xfig.org'
   url 'http://downloads.sourceforge.net/mcj/xfig.3.2.5c.full.tar.gz'
   version '3.2.5c'
-  sha1 '47d31dd9ad46819732ab74db340e11489db2c646'
+  sha256 'ea628f975b79ab175ab29220cc118274466497f6217f2989928317be2993a1f9'
 
   depends_on 'imake' => :build
   depends_on 'transfig'
