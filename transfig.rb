@@ -15,6 +15,10 @@ class Transfig < Formula
     cause "clang fails to process xfig's imake rules"
   end
 
+  def patches
+    DATA
+  end
+
   def install
     # transfig does not like to execute makefiles in parallel
     ENV.deparallelize
@@ -61,3 +65,36 @@ class Transfig < Formula
     system "make install.man"
   end
 end
+
+__END__
+diff --git a/fig2dev/dev/genibmgl.c b/fig2dev/dev/genibmgl.c
+index 6a622f1..e9dc3c0 100755
+--- a/fig2dev/dev/genibmgl.c
++++ b/fig2dev/dev/genibmgl.c
+@@ -567,7 +567,7 @@ double	length;
+  * set_width - issue line width commands as appropriate
+  *		NOTE: HPGL/2 command used
+  */
+-static set_width(w)
++static void set_width(w)
+     int	w;
+ {
+     static int current_width=-1;
+@@ -585,7 +585,7 @@ static set_width(w)
+ /* 
+  * set_color - issue line color commands as appropriate
+  */
+-static set_color(color)
++static void set_color(color)
+     int	color;
+ {
+     static	int	number		 = 0;	/* 1 <= number <= 8		*/
+@@ -604,7 +604,7 @@ static set_color(color)
+ 	    }
+ }
+ 
+-static fill_polygon(pattern, color)
++static void fill_polygon(pattern, color)
+     int	pattern;
+     int	color;
+ {
