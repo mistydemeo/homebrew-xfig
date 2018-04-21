@@ -1,15 +1,13 @@
-require 'formula'
-
 class Transfig < Formula
-  homepage 'http://www.xfig.org'
-  url 'http://downloads.sourceforge.net/mcj/transfig.3.2.5e.tar.gz'
-  version '3.2.5e'
-  sha256 '8ec5a8f13254dd155622ed3ee0fda1382b1e2b5882d83b9aca1871f12a3e7744'
+  homepage "http://www.xfig.org"
+  url "http://downloads.sourceforge.net/mcj/transfig.3.2.5e.tar.gz"
+  version "3.2.5e"
+  sha256 "8ec5a8f13254dd155622ed3ee0fda1382b1e2b5882d83b9aca1871f12a3e7744"
 
-  depends_on 'imake' => :build
-  depends_on 'jpeg'
-  depends_on 'ghostscript'
-  depends_on :x11 => '2.7.2'
+  depends_on "imake" => :build
+  depends_on "jpeg"
+  depends_on "ghostscript"
+  depends_on :x11 => "2.7.2"
 
   fails_with :clang do
     cause "clang fails to process xfig's imake rules"

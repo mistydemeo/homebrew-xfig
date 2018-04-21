@@ -1,16 +1,14 @@
-require 'formula'
-
 class Xfig < Formula
-  homepage 'http://www.xfig.org'
-  url 'http://downloads.sourceforge.net/mcj/xfig.3.2.5c.full.tar.gz'
-  version '3.2.5c'
-  sha256 'ea628f975b79ab175ab29220cc118274466497f6217f2989928317be2993a1f9'
+  homepage "http://www.xfig.org"
+  url "http://downloads.sourceforge.net/mcj/xfig.3.2.5c.full.tar.gz"
+  version "3.2.5c"
+  sha256 "ea628f975b79ab175ab29220cc118274466497f6217f2989928317be2993a1f9"
 
-  depends_on 'imake' => :build
-  depends_on 'transfig'
-  depends_on 'jpeg'
-  depends_on 'ghostscript'
-  depends_on :x11 => '2.7.2'
+  depends_on "imake" => :build
+  depends_on "transfig"
+  depends_on "jpeg"
+  depends_on "ghostscript"
+  depends_on :x11 => "2.7.2"
 
   fails_with :clang do
     cause "clang fails to process xfig's imake rules"
@@ -60,7 +58,7 @@ class Xfig < Formula
     end
 
     # Makefile still tries to access X11 includes under /usr/include
-    inreplace 'Makefile', '/usr/include/X11', MacOS::X11.include
+    inreplace "Makefile", "/usr/include/X11", MacOS::X11.include
     # build xfig
     system "make"
 
@@ -73,7 +71,7 @@ class Xfig < Formula
 
     # generate launch script to point environment variable XAPPLRESDIR to the app_defaults file for xfig
     mv "#{bin}/xfig",  "#{bin}/../xfig.bin"
-    File.open("#{bin}/xfig",'w') {|f| f.write("#!/bin/sh\n"+
+    File.open("#{bin}/xfig","w") {|f| f.write("#!/bin/sh\n"+
                                               "export XAPPLRESDIR=#{HOMEBREW_PREFIX}/lib/X11/app-defaults\n"+
                                               "#{bin}/../xfig.bin\n")}
     system "chmod u+x #{bin}/xfig"
