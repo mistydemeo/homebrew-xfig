@@ -1,5 +1,5 @@
 class Xfig < Formula
-  homepage "http://www.xfig.org"
+  homepage "https://mcj.sourceforge.io"
   url "https://downloads.sourceforge.net/mcj/xfig-3.2.7.tar.xz"
   version "3.2.7"
   sha256 "5fe81ce4132b139667fbfaacdf04a026f0313a34d39c7f640024db894cced42a"
