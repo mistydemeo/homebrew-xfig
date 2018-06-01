@@ -1,8 +1,8 @@
 class Xfig < Formula
   desc "Interactive drawing tool for X"
   homepage "https://mcj.sourceforge.io"
-  url "https://downloads.sourceforge.net/mcj/xfig-3.2.7.tar.xz"
-  sha256 "5fe81ce4132b139667fbfaacdf04a026f0313a34d39c7f640024db894cced42a"
+  url "https://downloads.sourceforge.net/project/mcj/xfig-3.2.7a.tar.xz"
+  sha256 "ca89986fc9ddb9f3c5a4f6f70e5423f98e2f33f5528a9d577fb05bbcc07ddf24"
 
   depends_on "fig2dev"
   depends_on "ghostscript"
