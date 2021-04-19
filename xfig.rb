@@ -15,9 +15,21 @@ class Xfig < Formula
     ENV.append "LDFLAGS", "-ljpeg"
 
     system "./configure", "--prefix=#{prefix}",
+                          # Because of the shim we'll write alone
+                          "--bindir=#{libexec}",
                           "--disable-dependency-tracking",
                           "--disable-silent-rules"
     system "make", "install"
+
+    # Xfig's X11 config relies on it being installed in a flat prefix,
+    # rather than one like Homebrew's with software installed in different
+    # linked prefixes. This shim script sets XAPPLRESDIR to ensure Xfig can
+    # find its configuration files on startup.
+    (bin/"xfig").write <<~EOS
+      #!/bin/sh
+      export XAPPLRESDIR=#{share}/X11/app-defaults
+      exec "#{libexec}/xfig" "$@"
+    EOS
   end
 
   test do
