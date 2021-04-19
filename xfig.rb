@@ -1,8 +1,8 @@
 class Xfig < Formula
   desc "Interactive drawing tool for X"
   homepage "https://mcj.sourceforge.io"
-  url "https://downloads.sourceforge.net/project/mcj/xfig-3.2.7b.tar.xz"
-  sha256 "bbc1c4aa8eb7fc06559a5bf83c4798f022be413519778a5d5cdccd24f39a0bce"
+  url "https://downloads.sourceforge.net/project/mcj/xfig-3.2.8a.tar.xz"
+  sha256 "ba43c0ea85b230d3efa5a951a3239e206d0b033d044c590a56208f875f888578"
 
   depends_on "fig2dev"
   depends_on "ghostscript"
@@ -10,6 +10,10 @@ class Xfig < Formula
   depends_on "libxaw3d"
 
   def install
+    # Inexplicably fails to link against JPEG while building its jpeg library
+    # Makefile bug? Who knows
+    ENV.append "LDFLAGS", "-ljpeg"
+
     system "./configure", "--prefix=#{prefix}",
                           "--disable-dependency-tracking",
                           "--disable-silent-rules"
